@@ -17,12 +17,6 @@
  --------------------------------------------------------------------------
 */
 
-// FIX: In GLPI 11, AJAX files placed under the plugin's ajax/ directory are
-// served through GLPI's LegacyFileLoadController which bootstraps the GLPI
-// environment automatically. The old "include ../../../inc/includes.php" path
-// no longer exists in GLPI 11's public/ layout and must NOT be included.
-// The bootstrap is already done when this file is reached.
-
 Html::header_nocache();
 Session::checkLoginUser();
 

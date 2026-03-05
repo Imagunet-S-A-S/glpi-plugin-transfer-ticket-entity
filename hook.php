@@ -50,9 +50,6 @@ function plugin_transferticketentity_install(): bool
     $table = 'glpi_plugin_transferticketentity_entities_settings';
 
     if (!$DB->tableExists($table)) {
-        // ── FRESH INSTALLATION ──────────────────────────────────────────────
-        // UNIQUE KEY on entities_id prevents duplicate rows that cause the
-        // "first save errors, second works" bug on delete+insert pattern.
         $query = "CREATE TABLE `{$table}` (
             `id`                         INT {$key_sign} NOT NULL AUTO_INCREMENT,
             `entities_id`                INT {$key_sign} NOT NULL DEFAULT 0,
@@ -72,24 +69,14 @@ function plugin_transferticketentity_install(): bool
         $DB->doQuery($query);
 
     } else {
-        // ── UPGRADE from v1.x / v2.0.0 ─────────────────────────────────────
         $migration = new Migration(TRANSFERTICKETENTITY_VERSION);
 
-        // Add columns introduced in v2.0 (Migration::addField skips if exists)
         $migration->addField($table, 'keep_category',     'bool',    ['value' => 0, 'after' => 'allow_transfer']);
         $migration->addField($table, 'itilcategories_id', 'integer', ['value' => 0, 'after' => 'keep_category']);
         $migration->addKey($table, 'itilcategories_id');
         $migration->executeMigration();
 
-        // Add UNIQUE KEY on entities_id if it does not already exist.
-        // NOTE: $DB->indexExists() was removed in GLPI 11.
-        // We use the global DbUtils::isIndex() helper (still available in GLPI 11)
-        // via the compatibility wrapper isIndex(), or fall back to a direct SHOW INDEX.
-        // Safest cross-version approach: try/catch on the ALTER — MariaDB/MySQL
-        // raises error 1061 ("Duplicate key name") if the index already exists,
-        // which we can safely ignore.
         if (!_transferticketentity_indexExists($DB, $table, 'uniq_entities_id')) {
-            // Remove duplicate rows first (keep the row with the lowest id)
             $DB->doQuery("
                 DELETE t1 FROM `{$table}` t1
                 INNER JOIN `{$table}` t2
@@ -102,8 +89,6 @@ function plugin_transferticketentity_install(): bool
         }
     }
 
-    // Always seed profile rights — covers re-install without prior uninstall
-    // and fresh installs where the super-admin profile needs the right immediately.
     Profile::createFirstAccess($_SESSION['glpiactiveprofile']['id']);
 
     return true;
@@ -124,7 +109,6 @@ function plugin_transferticketentity_install(): bool
  */
 function _transferticketentity_indexExists(object $DB, string $table, string $indexName): bool
 {
-    // SHOW INDEX is a read-only metadata query — safe to use with doQuery()
     $result = $DB->doQuery(
         "SHOW INDEX FROM `{$table}` WHERE `Key_name` = '" . $DB->escape($indexName) . "'"
     );
@@ -145,11 +129,9 @@ function plugin_transferticketentity_uninstall(): bool
 {
     global $DB;
 
-    // Remove all plugin profile rights using the ORM (no raw SQL needed)
     $DB->delete('glpi_profilerights', ['name' => 'plugin_transferticketentity_use']);
     $DB->delete('glpi_profilerights', ['name' => 'plugin_transferticketentity_bypass']);
 
-    // Drop plugin table via Migration (uses doQuery() internally — allowed in GLPI 11)
     $migration = new Migration(TRANSFERTICKETENTITY_VERSION);
     $migration->dropTable('glpi_plugin_transferticketentity_entities_settings');
     $migration->executeMigration();

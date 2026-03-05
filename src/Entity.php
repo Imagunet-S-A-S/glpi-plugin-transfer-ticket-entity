@@ -45,14 +45,10 @@ class Entity extends GlpiEntity
     {
         global $DB;
 
-        // FIX: read from $_REQUEST['id'] but also accept $ID param via context.
-        // The tab dispatcher calls showFormMcv($ID) which calls this without param,
-        // so we rely on the request. Using (int) ensures "0" → 0 (root entity).
         $entity = (int) ($_REQUEST['id'] ?? 0);
 
         $allItilCategories = [0 => __('None')];
 
-        // Fetch the entity row (root entity id=0 may not be in glpi_entities)
         $result = $DB->request([
             'FROM'  => 'glpi_entities',
             'WHERE' => ['id' => $entity],
@@ -65,25 +61,20 @@ class Entity extends GlpiEntity
             if (!empty($cache) && $cache !== 'null') {
                 $decoded = json_decode($cache, true);
                 if (is_array($decoded)) {
-                    // ancestors_cache stores ancestor IDs as keys (GLPI style)
                     $ancestorsEntities = array_keys($decoded);
                 }
             }
-            // Always include the entity itself
             $ancestorsEntities[] = $entity;
         }
 
-        // FIX: if entity not found in DB (e.g. root entity 0), still query its categories
         if (empty($ancestorsEntities)) {
             $ancestorsEntities = [$entity];
         }
 
-        // Remove duplicates
         $ancestorsEntities = array_unique($ancestorsEntities);
 
         foreach ($ancestorsEntities as $ancestorId) {
             $where = ['entities_id' => $ancestorId];
-            // For ancestor entities (not the target entity itself), only show recursive categories
             if ($ancestorId !== $entity) {
                 $where['is_recursive'] = 1;
             }
@@ -176,10 +167,8 @@ class Entity extends GlpiEntity
         $checkRights         = $this->checkRights($ID);
         $availableCategories = $this->availableCategories();
 
-        // Form action points to the front controller (GLPI 11 public/ directory)
         $formAction = $CFG_GLPI['root_doc'] . '/plugins/transferticketentity/front/entity.form.php';
 
-        // Tab redirect ID — URL-encode backslashes for safe query-string transport
         $tabId = urlencode(self::class . '$1');
 
         echo "<div class='firstbloc'>";
@@ -196,7 +185,6 @@ class Entity extends GlpiEntity
         echo "<th colspan='2'>" . __('Settings Transfer Ticket Entity', 'transferticketentity') . "</th>";
         echo "</tr>";
 
-        // --- Allow Transfer ---
         echo "<tr class='tab_bg_1'>";
         echo "<td class='b'>" . __('Allow Transfer function', 'transferticketentity') . "</td>";
         echo "<td>";
@@ -208,7 +196,6 @@ class Entity extends GlpiEntity
         );
         echo "</td></tr>";
 
-        // --- Assigned group required ---
         echo "<tr class='tab_bg_1' id='allow_entity_only_transfer'>";
         echo "<td class='b'>" . __('Assigned group required', 'transferticketentity') . "</td>";
         echo "<td>";
@@ -220,7 +207,6 @@ class Entity extends GlpiEntity
         );
         echo "</td></tr>";
 
-        // --- Justification required ---
         echo "<tr class='tab_bg_1' id='justification_transfer'>";
         echo "<td class='b'>" . __('Justification required', 'transferticketentity') . "</td>";
         echo "<td>";
@@ -232,7 +218,6 @@ class Entity extends GlpiEntity
         );
         echo "</td></tr>";
 
-        // --- Keep category after transfer ---
         echo "<tr class='tab_bg_1' id='keep_category'>";
         echo "<td class='b'>" . __('Keep category after transfer', 'transferticketentity') . "</td>";
         echo "<td>";
@@ -244,7 +229,6 @@ class Entity extends GlpiEntity
         );
         echo "</td></tr>";
 
-        // --- Default category ---
         echo "<tr class='tab_bg_1' id='itilcategories_id'>";
         echo "<td class='b'>" . __('Default category', 'transferticketentity') . "</td>";
         echo "<td>";
@@ -263,10 +247,6 @@ class Entity extends GlpiEntity
         echo "</table>";
 
         if ($canedit) {
-            // FIX: store the entity ID in a dedicated hidden field named 'plugin_entity_id'
-            // so it never collides with GLPI core's own 'id' POST field (which GLPI 11
-            // uses for its own entity save logic and may overwrite ours).
-            // Also store the forcetab so the redirect can use it.
             echo Html::hidden('plugin_entity_id', ['value' => $ID]);
             echo Html::hidden('forcetab', ['value' => $tabId]);
 

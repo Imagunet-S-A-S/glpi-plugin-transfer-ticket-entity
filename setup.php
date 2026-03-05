@@ -41,7 +41,6 @@ function plugin_init_transferticketentity()
 {
     global $PLUGIN_HOOKS;
 
-    // Add a tab for profiles, tickets and entities
     Plugin::registerClass(Profile::class, ['addtabon' => \Profile::class]);
     Plugin::registerClass(Ticket::class,  ['addtabon' => \Ticket::class]);
     Plugin::registerClass(Entity::class,  ['addtabon' => \Entity::class]);

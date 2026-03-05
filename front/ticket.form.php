@@ -97,7 +97,6 @@ if (!empty($group_choice) && !in_array($group_choice, $checkGroup)) {
     exit;
 }
 
-// Execute transfer
 $ticket = new \Ticket();
 $ticket_update = ['id' => $id_ticket, 'entities_id' => $entity_choice];
 
@@ -119,7 +118,6 @@ if (isset($ticket_update['itilcategories_id']) && $ticket_update['itilcategories
     exit;
 }
 
-// Remove assigned users and groups
 $ticket_user = new \Ticket_User();
 foreach ($ticket_user->find(['tickets_id' => $id_ticket, 'type' => \CommonITILActor::ASSIGN]) as $id => $tu) {
     $ticket_user->delete(['id' => $id]);
@@ -130,9 +128,6 @@ foreach ($group_ticket->find(['tickets_id' => $id_ticket, 'type' => \CommonITILA
     $group_ticket->delete(['id' => $id]);
 }
 
-// FIX double log: GLPI 11 core generates an automatic log entry when entities_id changes
-// on $ticket->update(). We suppress it with '_nolog' => true so only our single
-// ITILFollowup (below) is recorded — avoiding the duplicate message in the timeline.
 $ticket_update['_nolog'] = true;
 $ticket->update($ticket_update);
 
@@ -143,7 +138,6 @@ if ($requiredGroup && !empty($group_choice)) {
     }
 }
 
-// Build the log content for the single transfer record
 $groupText = $theGroup
     ? __("in the group", "transferticketentity") . " " . htmlspecialchars($theGroup)
     : '';
@@ -156,10 +150,6 @@ if (!empty($justification)) {
     $content .= "<br><br>" . htmlspecialchars($justification);
 }
 
-// Use ITILFollowup (private) as the single transfer log entry.
-// TicketTask was causing a double entry because GLPI 11 also auto-logs the
-// entities_id change as a task. ITILFollowup is the correct mechanism for
-// internal transfer notes and does NOT trigger an additional auto-log.
 $followup = new \ITILFollowup();
 $followup->add([
     'itemtype'   => 'Ticket',

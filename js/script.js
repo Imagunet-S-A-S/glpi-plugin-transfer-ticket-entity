@@ -2,12 +2,10 @@ $.ajax({
     url: CFG_GLPI.root_doc + '/plugins/transferticketentity/ajax/getEntitiesRights.php',
     method: "GET",
     success: function (data) {
-        // data may already be an object (jQuery auto-parses JSON) or a string
         if (typeof data === 'string') {
             data = JSON.parse(data);
         }
 
-        // Check if the form is there
         if (document.querySelector('.tt_entity_choice') != null) {
             $('#entity_choice').select2();
             $('#group_choice').select2();
@@ -23,14 +21,12 @@ $.ajax({
             const clone_all_groups = document.querySelectorAll('#group_choice option')
             let all_groups = []
 
-            // Remove all groups not chosen
             let all_groups_unchoice = document.querySelectorAll('#group_choice option')
             all_groups_unchoice.forEach(function(all_group_unchoice) {
                 all_group_unchoice.remove()
             })
 
             $('#entity_choice').on('change', function (event) {
-                // if value is empty, hide groups
                 if (entity_choice.value == '') {
                     tt_group_choice.style.display = 'none'
                     tt_btn_open_modal_form.disabled = true
@@ -38,7 +34,6 @@ $.ajax({
                     tt_btn_open_modal_form.style.color = '#FFFFFF'
                     tt_btn_open_modal_form.style.cursor = 'not-allowed'
                 } else {
-                // if not, show them
                     tt_group_choice.style.display = 'flex'
                     document.querySelector('#div_confirmation').style.display = 'block'
                     tt_btn_open_modal_form.disabled = true
@@ -52,7 +47,6 @@ $.ajax({
                 all_groups = []
                 all_groups = clone_all_groups
 
-                // Field is required or not depending on given rights
                 let entityRights = data.filter(e => e.entities_id == entity_choice.value)
                 let justificationRight = entityRights[0]['justification_transfer']
                 let groupRight = entityRights[0]['allow_entity_only_transfer']
@@ -74,7 +68,6 @@ $.ajax({
                     if (groupRight == 1 && all_group.id != 'tt_none') {
                         all_group.remove();
                     }
-                    // Add groups of selected entity
                     if ('tt_plugin_entity_' + entity_choice.value == all_group.className || all_group.value == '') {
                         if (groupRight == 1 && all_group.id != 'tt_none') {
                             document.querySelector('#group_choice').appendChild(all_group)
@@ -84,7 +77,6 @@ $.ajax({
                             all_group.remove();
                         }
                     } else {
-                    // Delete previous groups
                         all_group.remove()
                     }
                 })
@@ -99,12 +91,10 @@ $.ajax({
                     }
                 }
 
-                // if another entity is chosen, reset the selected group
                 document.querySelector('#no_select').selected = true
             })
 
             $('#group_choice').on('change', function (event) {
-                // if no group selected, disable the confirm button
                 if(document.querySelector('#no_select') !== null) {
                     if (document.querySelector('#no_select').selected == true) {
                         tt_btn_open_modal_form.disabled = true
@@ -112,7 +102,6 @@ $.ajax({
                         tt_btn_open_modal_form.style.color = '#FFFFFF'
                         tt_btn_open_modal_form.style.cursor = 'not-allowed'
                     } else {
-                    // else, enable it
                         tt_btn_open_modal_form.disabled = false
                         tt_btn_open_modal_form.style.backgroundColor = '#80cead'
                         tt_btn_open_modal_form.style.color = '#1e293b'
@@ -123,13 +112,11 @@ $.ajax({
 
             let modal_form_adder = document.getElementById('tt_modal_form_adder')
 
-            // Open modal
             document.querySelector('#canceltransfert').addEventListener('click', function(event){
                 event.preventDefault()
                 modal_form_adder.close();
             });
 
-            // Close modal
             tt_btn_open_modal_form.addEventListener('click', function(event){
                 event.preventDefault()
                 modal_form_adder.showModal();

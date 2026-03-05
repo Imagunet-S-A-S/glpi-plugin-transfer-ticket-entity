@@ -24,11 +24,8 @@
      * We match any input whose name starts with "_<fieldName>[" to be version-safe.
      */
     function findRightCheckbox(fieldName) {
-        // Inputs whose name attribute starts with _<fieldName>[ — picks the active right checkbox
         var selector = 'input[type="checkbox"][name^="_' + fieldName + '["]';
         var inputs   = document.querySelectorAll(selector);
-        // Return the last match — GLPI profile matrix may render multiple rows
-        // (one per profile or per right value); we want the "active" checkbox (ALLSTANDARDRIGHT)
         return inputs.length > 0 ? inputs[inputs.length - 1] : null;
     }
 
@@ -37,7 +34,6 @@
         var bypassRight = findRightCheckbox('plugin_transferticketentity_bypass');
 
         if (!useRight || !bypassRight) {
-            // Rights checkboxes not present on this page — nothing to wire up
             return;
         }
 
