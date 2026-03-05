@@ -40,3 +40,7 @@ The transfer prerequisites are managed in the entity administration.
 ## Compatibility
 
 This plugin has been tested up to GLPI version 11.0.5
+
+## Credits 
+
+Based on https://github.com/Departement-de-Maine-et-Loire/transferticketentity/tree/master
