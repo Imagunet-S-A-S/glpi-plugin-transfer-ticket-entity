@@ -1,0 +1,182 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Translators:
+# Yannick Comba <y.comba@maine-et-loire.fr>, 2022
+# Yannick Comba, 2022,2023
+# Département de Maine et Loire
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI Plugin - admincolor\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-24 09:03+0000\n"
+"PO-Revision-Date: 2024-04-08 11:12+0200\n"
+"Last-Translator: Yannick Comba, 2022,2023\n"
+"Language-Team: English (United Kingdom) (Département de Maine et Loire)\n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.3.2\n"
+
+#: inc/profile.class.php:74 inc/ticket.class.php:48
+msgid "Transfer Ticket Entity"
+msgstr "Transfer Ticket Entity"
+
+#: inc/profile.class.php:74
+msgid "Change rights"
+msgstr "Change rights"
+
+#: inc/profile.class.php:77
+msgid "Authorized entity transfer"
+msgstr "Authorized entity transfer"
+
+#: inc/profile.class.php:89
+msgid "Save"
+msgstr "Save"
+
+#: inc/profile.php:50 inc/profile.php:63
+msgid "Item successfully updated"
+msgstr "Item successfully updated"
+
+#: inc/ticket.class.php:210
+msgid "Error, please reload the page."
+msgstr "Error, please reload the page."
+
+#: inc/ticket.class.php:211
+msgid "If the problem persists, you can try to empty the cache by doing CTRL + F5."
+msgstr "If the problem persists, you can try to empty the cache by doing CTRL + F5."
+
+#: inc/ticket.class.php:216
+msgid "Select ticket entity to transfer"
+msgstr "Select ticket entity to transfer"
+
+#: inc/ticket.class.php:218
+msgid "Choose your entity"
+msgstr "Choose your entity"
+
+#: inc/ticket.class.php:227
+msgid "Select the group to assign"
+msgstr "Select the group to assign"
+
+#: inc/ticket.class.php:229
+msgid "Choose your group"
+msgstr "Choose your group"
+
+#: inc/ticket.class.php:250
+msgid "Confirm transfer ?"
+msgstr "Confirm transfer ?"
+
+#: inc/ticket.class.php:251
+msgid "Once the transfer has been completed, the ticket will remain visible only if you have the required rights."
+msgstr "Once the transfer has been completed, the ticket will remain visible only if you have the required rights."
+
+#: inc/ticket.class.php:252
+msgid "Cancel"
+msgstr "Cancel"
+
+#: inc/ticket.class.php:253 inc/ticket.class.php:244
+msgid "Confirm"
+msgstr "Confirm"
+
+#: front/ticket.form.php:125
+msgid "Please select a valid entity"
+msgstr "Please select a valid entity"
+
+#: front/ticket.form.php:135
+msgid "Please select a valid group"
+msgstr "Please select a valid group"
+
+#: front/ticket.form.php:181
+msgid "Escalation to"
+msgstr "Escalation to"
+
+#: front/ticket.form.php:181
+msgid "in the group"
+msgstr "in the group"
+
+#: front/ticket.form.php:185
+msgid "Successful transfer for ticket n° : "
+msgstr "Successful transfer for ticket n° : "
+
+#: front/ticket.form.php:197
+msgid "Transfer canceled"
+msgstr "Transfer canceled"
+
+#: inc/ticket.class.php:266
+msgid "Unauthorized transfer on closed ticket."
+msgstr "Unauthorized transfer on closed ticket."
+
+#: inc/ticket.class.php:436 front/ticket.form.php:357
+msgid "Please explain your transfer"
+msgstr "Please explain your transfer"
+
+#: front/ticket.form.php:266
+msgid "You must be assigned to the ticket to be able to transfer it"
+msgstr "You must be assigned to the ticket to be able to transfer it"
+
+#: inc/ticket.class.php:239
+msgid "No entity available found, transfer impossible."
+msgstr "No entity available found, transfer impossible."
+
+#: inc/ticket.class.php:305
+msgid "None"
+msgstr "None"
+
+#: inc/entity.class.php:118
+msgid "Settings Transfer Ticket Entity"
+msgstr "Settings Transfer Ticket Entity"
+
+#: inc/entity.class.php:123
+msgid "Assigned group required"
+msgstr "Assigned group required"
+
+#: inc/entity.class.php:130
+msgid "Justification required"
+msgstr "Justification required"
+
+#: inc/entity.class.php:137
+msgid "Allow Transfer function"
+msgstr "Allow Transfer function"
+
+#: inc/ticket.class.php:322
+msgid "No previous entity"
+msgstr "No previous entity"
+
+#: inc/ticket.class.php:342
+msgid "No group found with « Assigned to » right while a group is required. Transfer impossible."
+msgstr "No group found with « Assigned to » right while a group is required. Transfer impossible."
+
+#: inc/profile.class.php:45
+msgid "Active"
+msgstr "Active"
+
+#: inc/profile.class.php:47
+msgid "Transfer authorized without assignment of technician or associated group"
+msgstr "Transfer authorized without assignment of technician or associated group"
+
+#: inc/entity.class.php:153
+msgid "Keep category after transfer"
+msgstr "Keep category after transfer"
+
+#: inc/ticket.class.php:448
+msgid "Warning, category will be reset if it does not exist in the target entity."
+msgstr "Warning, category will be reset if it does not exist in the target entity."
+
+#: inc/ticket.class.php:303
+msgid "You don't have right to update tickets. Please contact your administrator."
+msgstr "You don't have right to update tickets. Please contact your administrator."
+
+#: inc/ticket.class.php:405
+msgid "optional"
+msgstr "optional"
+
+#: inc/entity.class.php:219
+msgid "Default category"
+msgstr "Default category"
+
+#: front/ticket.form.php:266
+msgid "Category will be set to null but its configured as mandatory in GLPIs template, please contact your administrator."
+msgstr "Category will be set to null but its configured as mandatory in GLPIs template, please contact your administrator."

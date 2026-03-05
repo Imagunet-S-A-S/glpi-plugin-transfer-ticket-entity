@@ -1,0 +1,216 @@
+/*
+ * TransferTicketEntity — CSS para GLPI 11
+ * Usa variables CSS de Tabler/Bootstrap 5 que GLPI 11 provee globalmente.
+ * NO hardcodear colores ni fuentes — usar var(--tblr-*) y var(--bs-*).
+ *
+ * @copyright 2026 IMAGUNET S.A.S
+ */
+
+/* ─── Utilitarios globales ──────────────────────────────────────────────────── */
+
+.tt_hidden_value {
+    display: none;
+}
+
+/* ─── Ticket tab — mensajes de estado ─────────────────────────────────────── */
+
+.tt_unauthorised,
+.tt_group_not_found {
+    text-align: center;
+    color: var(--tblr-danger);
+    font-size: var(--tblr-font-size-base, 0.875rem);
+    padding: 1.5rem 1rem;
+}
+
+#tt_gest_error {
+    color: var(--tblr-danger);
+    text-align: center;
+    padding: 0.5rem;
+}
+
+/* ─── Formulario de transferencia (ticket tab) ─────────────────────────────── */
+
+.form_transfert {
+    margin: 0 auto;
+    display: none;                    /* JS lo muestra cuando AJAX responde */
+    max-width: 800px;
+    padding: 1rem 0;
+}
+
+.form_transfert .tt_entity_choice,
+.form_transfert .tt_group_choice {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.form_transfert .tt_entity_choice label,
+.form_transfert .tt_group_choice label {
+    font-weight: 500;
+    color: var(--tblr-body-color);
+    min-width: 220px;
+}
+
+/* Select2 hereda el ancho del select original — lo dejamos al 100% del flex */
+.form_transfert .tt_entity_choice select,
+.form_transfert .tt_group_choice select {
+    flex: 1;
+    min-width: 200px;
+}
+
+.form_transfert .tt_group_choice {
+    display: none;                    /* JS lo muestra al elegir entidad */
+}
+
+.form_transfert #div_confirmation {
+    display: none;
+}
+
+/* ─── Botón Confirmar (abre modal) ─────────────────────────────────────────── */
+
+/* Usamos las clases de Bootstrap/Tabler directamente en el HTML.
+   Este selector existe como fallback si el botón no tiene clase btn. */
+#tt_btn_open_modal_form {
+    /* Hereda de .btn .btn-primary — no sobreescribir a menos que sea necesario */
+}
+
+/* ─── Mensaje "no hay grupos" ──────────────────────────────────────────────── */
+
+.group_not_found {
+    display: none;
+    text-align: center;
+    color: var(--tblr-danger);
+    font-size: 0.875rem;
+    padding: 1rem 0;
+}
+
+/* ─── Modal de confirmación (elemento <dialog>) ────────────────────────────── */
+
+.tt_modal {
+    border: 1px solid var(--tblr-border-color);
+    border-radius: var(--tblr-border-radius-lg, 0.5rem);
+    box-shadow: var(--tblr-shadow-lg, 0 8px 24px rgba(0, 0, 0, 0.15));
+    background-color: var(--tblr-card-bg, #fff);
+    color: var(--tblr-body-color);
+    padding: 1.5rem;
+    max-width: 560px;
+    width: 100%;
+    text-align: center;
+    /* Centrar el dialog nativo en pantalla */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: var(--tblr-zindex-modal, 1055);
+}
+
+/* Fondo oscuro detrás del dialog (::backdrop solo funciona con showModal()) */
+.tt_modal::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.tt_modal h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--tblr-heading-color, var(--tblr-body-color));
+    margin-bottom: 0.75rem;
+}
+
+.tt_modal p {
+    color: var(--tblr-muted, var(--tblr-secondary-color));
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
+/* ─── Justificación dentro del modal ──────────────────────────────────────── */
+
+#tt_modal_form_adder .justification {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+#tt_modal_form_adder .justification label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.375rem;
+    color: var(--tblr-body-color);
+}
+
+.tt_modal textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 0.5rem 0.75rem;
+    box-sizing: border-box;
+    border: 1px solid var(--tblr-border-color);
+    border-radius: var(--tblr-border-radius, 0.25rem);
+    background-color: var(--tblr-input-bg, #fff);
+    color: var(--tblr-body-color);
+    font-family: inherit;
+    font-size: 0.875rem;
+    resize: vertical;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.tt_modal textarea:focus {
+    outline: none;
+    border-color: var(--tblr-primary);
+    box-shadow: 0 0 0 0.2rem rgba(var(--tblr-primary-rgb, 32, 107, 196), 0.25);
+}
+
+/* ─── Aviso categoría ──────────────────────────────────────────────────────── */
+
+.adv-msg {
+    color: var(--tblr-warning-darken, #8c5e00);
+    font-size: 0.8125rem;
+    font-style: italic;
+    margin-bottom: 0.75rem;
+}
+
+/* ─── Botones dentro del modal ─────────────────────────────────────────────── */
+/* Los botones deben tener clases Bootstrap en el PHP (btn btn-danger / btn-success).
+   Solo añadimos spacing para no depender del gap del contenedor. */
+
+#tt_modal_form_adder > div {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+/* ─── Pestaña de perfil (Profile tab) ─────────────────────────────────────── */
+
+.tt_profile_border-top {
+    background: var(--tblr-border-color-light);
+}
+
+.tt_profile_border-top h4 {
+    line-height: 1.4285714286;
+    font-size: 0.875rem;
+    color: var(--tblr-muted, #626976);
+}
+
+.tt_profile_tab_bg_2 {
+    width: 40%;
+}
+
+/* ─── Responsive ────────────────────────────────────────────────────────────── */
+
+@media (max-width: 576px) {
+    .form_transfert .tt_entity_choice,
+    .form_transfert .tt_group_choice {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .form_transfert .tt_entity_choice label,
+    .form_transfert .tt_group_choice label {
+        min-width: unset;
+    }
+
+    .tt_modal {
+        max-width: calc(100vw - 2rem);
+        padding: 1rem;
+    }
+}
