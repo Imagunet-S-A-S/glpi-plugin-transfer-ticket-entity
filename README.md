@@ -1,46 +1,3 @@
-# GLPi Transfer Ticket Entity Plugin (FR)
-
-## Introduction
-
-Ce plugin permet, pour les profils autorisés, de transférer des tickets d'une entité à une autre sur laquelle ils n'ont pas les accès.
-Il s'adresse aux organisations qui ont configurés, dans GLPI, leurs périmètres d'activités par entité (DRH, Comptabilité, SI, ...).
-
-L'intérêt étant de pouvoir transférer un ticket entre techniciens "GLPI" d'entités différentes et de continuer à assurer la confidentialité des données entre entités.
-
-Pour exemple : 
-Un profil "technicien comptable" a, par défaut, visibilité que sur les tickets de son entité "Comptabilité".
-Dès lors, où un des tickets, qui lui est assigné, concerne la DRH, il aura la possibilité de leur transférer avec suivi.
-Une fois le transfert effectué, il n'a plus aucune visibilité sur le ticket.
-
-## Documentation
-
-Pour configurer les prérequis du transfert d'entité :
-
-- Dans Administration > Profils > VotreProfil > Assistance > Ticket : Mettre à jour doit être coché.
-
-- Autoriser la fonction Transfert : définit si le transfert est autorisé vers l'entité et groupes associés
-- Groupe à assigner obligatoire pour effectuer un transfert : 
-	- Définit si le ticket transféré doit être obligatoirement assigné à un groupe.
-	- Si non, le choix "aucun" apparaîtra dans la liste du groupe cible et sera à sélectionner
-	- Si le ticket est envoyé dans une entité sans groupe, il sera considéré comme "nouveau"
-- Justification obligatoire pour effectuer un transfert
-	- Si oui, le champ de saisi s'affiche avec un encart rouge
-	- Si non, ce dernier apparaîtra avec un encart bleu toutefois la zone de saisie restera active si besoin.
-- Garder la catégorie après le transfert :
-    - Si oui, la catégorie du ticket sera gardé après le transfert seulement si elle est disponible dans l'entité cible, sinon elle sera remise à null.
-    - Si non, la catégorie du ticket sera remise à null.
-    - Si non, il est possible de choisir une catégorie par défaut.
-    - :warning: Si la catégorie est obligatoire dans l'entité de destination (via les templates de GLPI) et qu'elle sera équivalente à null après le transfert, une erreur apparaîtra.
-
-## Où configurer le plugin
-
-Vous pouvez configurer les droits d'accès au plugin dans l'administration des profils.
-Les prérequis du transfert se gèrent dans l'administration des entités.
-
-## Compatibilité
-
-Ce plugin a été testé jusqu'à la version de GLPI 10.0.14
-
 # GLPi Transfer Ticket Entity Plugin (EN)
 
 ## Introduction
@@ -83,3 +40,7 @@ The transfer prerequisites are managed in the entity administration.
 ## Compatibility
 
 This plugin has been tested up to GLPI version 11.0.5
+
+## Credits 
+
+Based on https://github.com/Departement-de-Maine-et-Loire/transferticketentity/tree/master
