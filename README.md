@@ -39,7 +39,7 @@ The transfer prerequisites are managed in the entity administration.
 
 ## Compatibility
 
-This plugin has been tested up to GLPI version 11.0.5
+This plugin has been tested up to GLPI version 10.0.14
 
 ## Credits 
 

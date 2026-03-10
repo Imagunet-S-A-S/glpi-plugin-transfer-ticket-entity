@@ -1,7 +1,15 @@
-.tt_hidden_value {
-    display: none;
-}
+/*
+ * TransferTicketEntity — CSS para GLPI 11 / Tabler + Bootstrap 5
+ * Solo estilos que Bootstrap/Tabler no provee por defecto.
+ * NO hardcodear colores — usar var(--tblr-*).
+ *
+ * @copyright 2026 IMAGUNET S.A.S
+ */
 
+/* ─── Utilitarios ───────────────────────────────────────────────────────────── */
+.tt_hidden_value { display: none; }
+
+/* ─── Mensajes de estado (sin permisos / sin entidades) ────────────────────── */
 .tt_unauthorised,
 .tt_group_not_found {
     text-align: center;
@@ -16,10 +24,11 @@
     padding: 0.5rem;
 }
 
+/* ─── Formulario de transferencia ──────────────────────────────────────────── */
 .form_transfert {
-    margin: 0 auto;
-    display: none;                  
+    display: none;   /* JS lo muestra tras AJAX */
     max-width: 800px;
+    margin: 0 auto;
     padding: 1rem 0;
 }
 
@@ -35,148 +44,48 @@
 .form_transfert .tt_entity_choice label,
 .form_transfert .tt_group_choice label {
     font-weight: 500;
-    color: var(--tblr-body-color);
     min-width: 220px;
+    color: var(--tblr-body-color);
 }
 
-
-.form_transfert .tt_entity_choice select,
-.form_transfert .tt_group_choice select {
+.form_transfert select {
     flex: 1;
     min-width: 200px;
 }
 
-.form_transfert .tt_group_choice {
-    display: none;            
-}
+.form_transfert .tt_group_choice { display: none; }
+.form_transfert #div_confirmation { display: none; }
 
-.form_transfert #div_confirmation {
+/* ─── "No hay grupos" ──────────────────────────────────────────────────────── */
+.tt_group_not_found {
     display: none;
 }
 
-#tt_btn_open_modal_form {
-
-}
-
-
-.group_not_found {
-    display: none;
-    text-align: center;
-    color: var(--tblr-danger);
-    font-size: 0.875rem;
-    padding: 1rem 0;
-}
-
-.tt_modal {
-    border: 1px solid var(--tblr-border-color);
-    border-radius: var(--tblr-border-radius-lg, 0.5rem);
-    box-shadow: var(--tblr-shadow-lg, 0 8px 24px rgba(0, 0, 0, 0.15));
-    background-color: var(--tblr-card-bg, #fff);
-    color: var(--tblr-body-color);
-    padding: 1.5rem;
-    max-width: 560px;
-    width: 100%;
-    text-align: center;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: var(--tblr-zindex-modal, 1055);
-}
-
-.tt_modal::backdrop {
-    background: rgba(0, 0, 0, 0.5);
-}
-
-.tt_modal h2 {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--tblr-heading-color, var(--tblr-body-color));
-    margin-bottom: 0.75rem;
-}
-
-.tt_modal p {
-    color: var(--tblr-muted, var(--tblr-secondary-color));
-    margin-bottom: 1rem;
-    font-size: 0.875rem;
-}
-
-#tt_modal_form_adder .justification {
-    margin-bottom: 1rem;
-    text-align: left;
-}
-
-#tt_modal_form_adder .justification label {
-    display: block;
-    font-weight: 500;
-    margin-bottom: 0.375rem;
-    color: var(--tblr-body-color);
-}
-
-.tt_modal textarea {
-    width: 100%;
-    min-height: 80px;
-    padding: 0.5rem 0.75rem;
-    box-sizing: border-box;
-    border: 1px solid var(--tblr-border-color);
-    border-radius: var(--tblr-border-radius, 0.25rem);
-    background-color: var(--tblr-input-bg, #fff);
-    color: var(--tblr-body-color);
-    font-family: inherit;
-    font-size: 0.875rem;
-    resize: vertical;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.tt_modal textarea:focus {
-    outline: none;
-    border-color: var(--tblr-primary);
-    box-shadow: 0 0 0 0.2rem rgba(var(--tblr-primary-rgb, 32, 107, 196), 0.25);
-}
-
+/* ─── Aviso de categoría dentro del modal ──────────────────────────────────── */
 .adv-msg {
-    color: var(--tblr-warning-darken, #8c5e00);
     font-size: 0.8125rem;
-    font-style: italic;
-    margin-bottom: 0.75rem;
 }
 
-
-#tt_modal_form_adder > div {
-    display: flex;
-    justify-content: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-}
-
+/* ─── Pestaña de perfil ────────────────────────────────────────────────────── */
 .tt_profile_border-top {
     background: var(--tblr-border-color-light);
 }
-
 .tt_profile_border-top h4 {
     line-height: 1.4285714286;
     font-size: 0.875rem;
     color: var(--tblr-muted, #626976);
 }
+.tt_profile_tab_bg_2 { width: 40%; }
 
-.tt_profile_tab_bg_2 {
-    width: 40%;
-}
-
+/* ─── Responsive ────────────────────────────────────────────────────────────── */
 @media (max-width: 576px) {
     .form_transfert .tt_entity_choice,
     .form_transfert .tt_group_choice {
         flex-direction: column;
         align-items: stretch;
     }
-
     .form_transfert .tt_entity_choice label,
     .form_transfert .tt_group_choice label {
         min-width: unset;
-    }
-
-    .tt_modal {
-        max-width: calc(100vw - 2rem);
-        padding: 1rem;
     }
 }

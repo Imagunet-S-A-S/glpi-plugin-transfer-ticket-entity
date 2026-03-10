@@ -1,22 +1,22 @@
 {
     "name": "imagunet/transferticketentity",
     "description": "GLPI 11 plugin to transfer tickets between entities for authorized profiles",
+    "version": "11.0.1",
     "type": "glpi-plugin",
     "license": "AGPL-3.0-or-later",
     "authors": [
         {
-            "name": "Giovanny Rodriguez",
-            "email": "giovanny.rodriguez@imagunet.com"
-        },
-        {
-            "name": "Santiago Gomez",
-            "email": "santiago.gomez@imagunet.com"
-        },
-        {
-            "name": "Juan Gallego",
-            "email": "juan.gallego@imagunet.com"
+            "name": "IMAGUNET S.A.S",
+            "email": "soporte@imagunet.com",
+            "homepage": "https://www.imagunet.com",
+            "role": "Maintainer"
         }
     ],
+    "support": {
+        "homepage": "https://www.imagunet.com",
+        "issues": "https://github.com/imagunet/transferticketentity/issues",
+        "source": "https://github.com/imagunet/transferticketentity"
+    },
     "require": {
         "php": ">=8.2"
     },

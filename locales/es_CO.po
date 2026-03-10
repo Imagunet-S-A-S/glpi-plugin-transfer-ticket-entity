@@ -1,0 +1,194 @@
+# TransferTicketEntity — Traducción al español (Colombia)
+# Copyright (C) 2026 IMAGUNET S.A.S
+# Translator: IMAGUNET S.A.S <soporte@imagunet.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TransferTicketEntity 11.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-09 00:00+0000\n"
+"PO-Revision-Date: 2026-03-09 00:00-0500\n"
+"Last-Translator: IMAGUNET S.A.S <soporte@imagunet.com>\n"
+"Language-Team: Spanish (Colombia)\n"
+"Language: es_CO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Manual\n"
+
+#: src/Profile.php src/Ticket.php
+msgid "Transfer Ticket Entity"
+msgstr "Transferir Ticket a Entidad"
+
+#: src/Profile.php
+msgid "Transfer Ticket Entity — IMAGUNET S.A.S"
+msgstr "Transferir Ticket a Entidad — IMAGUNET S.A.S"
+
+#: src/Profile.php
+msgid "Change rights"
+msgstr "Cambiar permisos"
+
+#: src/Profile.php
+msgid "Authorized entity transfer"
+msgstr "Transferencia de entidad autorizada"
+
+#: src/Profile.php
+msgid "Active"
+msgstr "Activo"
+
+#: src/Profile.php
+msgid "Transfer authorized without assignment of technician or associated group"
+msgstr "Transferencia autorizada sin asignación de técnico o grupo asociado"
+
+#: src/Profile.php
+msgid "Save"
+msgstr "Guardar"
+
+#: src/Profile.php front/ticket.form.php
+msgid "Item successfully updated"
+msgstr "Elemento actualizado exitosamente"
+
+#: src/Ticket.php
+msgid "Error, please reload the page."
+msgstr "Error, por favor recargue la página."
+
+#: src/Ticket.php
+msgid "If the problem persists, you can try to empty the cache by doing CTRL + F5."
+msgstr "Si el problema persiste, intente vaciar el caché presionando CTRL + F5."
+
+#: src/Ticket.php
+msgid "Select ticket entity to transfer"
+msgstr "Seleccione la entidad a la que desea transferir el ticket"
+
+#: src/Ticket.php
+msgid "Choose your entity"
+msgstr "Elija la entidad"
+
+#: src/Ticket.php
+msgid "Select the group to assign"
+msgstr "Seleccione el grupo a asignar"
+
+#: src/Ticket.php
+msgid "Choose your group"
+msgstr "Elija el grupo"
+
+#: src/Ticket.php
+msgid "Confirm transfer ?"
+msgstr "¿Confirmar transferencia?"
+
+#: src/Ticket.php
+msgid "Once the transfer has been completed, the ticket will remain visible only if you have the required rights."
+msgstr "Una vez completada la transferencia, el ticket permanecerá visible únicamente si cuenta con los permisos requeridos."
+
+#: src/Ticket.php
+msgid "Please explain your transfer"
+msgstr "Justificación de la transferencia"
+
+#: src/Ticket.php
+msgid "Warning, category will be reset if it does not exist in the target entity."
+msgstr "Advertencia: la categoría será reiniciada si no existe en la entidad destino."
+
+#: src/Ticket.php
+msgid "Confirm"
+msgstr "Confirmar"
+
+#: src/Ticket.php
+msgid "Unauthorized transfer on closed ticket."
+msgstr "Transferencia no autorizada: el ticket está cerrado."
+
+#: src/Ticket.php
+msgid "No entity available found, transfer impossible."
+msgstr "No se encontró ninguna entidad disponible. Transferencia imposible."
+
+#: src/Ticket.php
+msgid "None"
+msgstr "Ninguno"
+
+#: src/Ticket.php
+msgid "No previous entity"
+msgstr "Sin entidad previa"
+
+#: src/Ticket.php
+msgid "No group found with « Assigned to » right while a group is required. Transfer impossible."
+msgstr "No se encontró ningún grupo con el permiso «Asignado a» y se requiere uno. Transferencia imposible."
+
+#: src/Ticket.php
+msgid "You don't have right to update tickets. Please contact your administrator."
+msgstr "No tiene permiso para actualizar tickets. Por favor contacte al administrador."
+
+#: front/ticket.form.php
+msgid "Please select a valid entity"
+msgstr "Por favor seleccione una entidad válida"
+
+#: front/ticket.form.php
+msgid "Please select a valid group"
+msgstr "Por favor seleccione un grupo válido"
+
+#: front/ticket.form.php
+msgid "Escalation to"
+msgstr "Escalado a"
+
+#: front/ticket.form.php
+msgid "in the group"
+msgstr "en el grupo"
+
+#: front/ticket.form.php
+msgid "Successful transfer for ticket n° : "
+msgstr "Transferencia exitosa para el ticket n°: "
+
+#: front/ticket.form.php
+msgid "Transfer canceled"
+msgstr "Transferencia cancelada"
+
+#: front/ticket.form.php
+msgid "You must be assigned to the ticket to be able to transfer it"
+msgstr "Debe estar asignado al ticket para poder transferirlo"
+
+#: src/Entity.php
+msgid "Settings Transfer Ticket Entity"
+msgstr "Configuración de Transferir Ticket a Entidad"
+
+#: src/Entity.php
+msgid "Configure whether this entity can receive ticket transfers from other entities, and define the rules that apply when a ticket arrives here."
+msgstr "Configure si esta entidad puede recibir transferencias de tickets desde otras entidades y defina las reglas que aplican cuando un ticket llega aquí."
+
+#: src/Entity.php
+msgid "Allow Transfer function"
+msgstr "Permitir función de transferencia"
+
+#: src/Entity.php
+msgid "Enables this entity as a valid destination for ticket transfers. All options below are only active when this is set to Yes."
+msgstr "Habilita esta entidad como destino válido para transferencias de tickets. Las demás opciones solo están activas cuando este campo es Sí."
+
+#: src/Entity.php
+msgid "Assigned group required"
+msgstr "Grupo asignado requerido"
+
+#: src/Entity.php
+msgid "If Yes, the technician must select a group from this entity before confirming the transfer. The ticket will be automatically assigned to that group."
+msgstr "Si es Sí, el técnico debe seleccionar un grupo de esta entidad antes de confirmar la transferencia. El ticket se asignará automáticamente a ese grupo."
+
+#: src/Entity.php
+msgid "Justification required"
+msgstr "Justificación requerida"
+
+#: src/Entity.php
+msgid "If Yes, the technician must enter a written reason for the transfer. The justification is recorded as a private follow-up on the ticket timeline."
+msgstr "Si es Sí, el técnico debe ingresar una razón escrita para la transferencia. La justificación se registra como un seguimiento privado en la línea de tiempo del ticket."
+
+#: src/Entity.php
+msgid "Keep category after transfer"
+msgstr "Mantener categoría después de la transferencia"
+
+#: src/Entity.php
+msgid "If Yes, the original ticket category is preserved after transfer (only if it exists in this entity)."
+msgstr "Si es Sí, la categoría original del ticket se conserva después de la transferencia (solo si existe en esta entidad)."
+
+#: src/Entity.php
+msgid "Default category"
+msgstr "Categoría por defecto"
+
+#: src/Entity.php
+msgid "Category automatically assigned to the ticket when it is transferred to this entity and the original category is not kept or does not exist here."
+msgstr "Categoría asignada automáticamente al ticket cuando es transferido a esta entidad y la categoría original no se conserva o no existe aquí."

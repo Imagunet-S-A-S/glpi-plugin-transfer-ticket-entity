@@ -179,6 +179,14 @@ class Entity extends GlpiEntity
             echo "<form class='transferticketentity' method='post' action='" . htmlspecialchars($formAction) . "'>";
         }
 
+        echo "<div class='alert alert-info d-flex align-items-start gap-2 mb-3' role='note'>";
+        echo "<i class='ti ti-info-circle mt-1 flex-shrink-0'></i>";
+        echo "<div>";
+        echo "<strong>" . __('Transfer Ticket Entity — IMAGUNET S.A.S', 'transferticketentity') . "</strong><br>";
+        echo __('Configure whether this entity can receive ticket transfers from other entities, and define the rules that apply when a ticket arrives here.', 'transferticketentity');
+        echo "</div>";
+        echo "</div>";
+
         echo "<table class='tab_cadre_fixe'>";
         echo "<tbody>";
         echo "<tr>";
@@ -186,7 +194,12 @@ class Entity extends GlpiEntity
         echo "</tr>";
 
         echo "<tr class='tab_bg_1'>";
-        echo "<td class='b'>" . __('Allow Transfer function', 'transferticketentity') . "</td>";
+        echo "<td class='b'>";
+        echo __('Allow Transfer function', 'transferticketentity');
+        echo "<br><span class='text-muted fw-normal' style='font-size:0.8em'>";
+        echo __('Enables this entity as a valid destination for ticket transfers. All options below are only active when this is set to Yes.', 'transferticketentity');
+        echo "</span>";
+        echo "</td>";
         echo "<td>";
         echo Dropdown::showYesNo(
             'allow_transfer',
@@ -197,7 +210,12 @@ class Entity extends GlpiEntity
         echo "</td></tr>";
 
         echo "<tr class='tab_bg_1' id='allow_entity_only_transfer'>";
-        echo "<td class='b'>" . __('Assigned group required', 'transferticketentity') . "</td>";
+        echo "<td class='b'>";
+        echo __('Assigned group required', 'transferticketentity');
+        echo "<br><span class='text-muted fw-normal' style='font-size:0.8em'>";
+        echo __('If Yes, the technician must select a group from this entity before confirming the transfer. The ticket will be automatically assigned to that group.', 'transferticketentity');
+        echo "</span>";
+        echo "</td>";
         echo "<td>";
         echo Dropdown::showYesNo(
             'allow_entity_only_transfer',
@@ -208,7 +226,12 @@ class Entity extends GlpiEntity
         echo "</td></tr>";
 
         echo "<tr class='tab_bg_1' id='justification_transfer'>";
-        echo "<td class='b'>" . __('Justification required', 'transferticketentity') . "</td>";
+        echo "<td class='b'>";
+        echo __('Justification required', 'transferticketentity');
+        echo "<br><span class='text-muted fw-normal' style='font-size:0.8em'>";
+        echo __('If Yes, the technician must enter a written reason for the transfer. The justification is recorded as a private follow-up on the ticket timeline.', 'transferticketentity');
+        echo "</span>";
+        echo "</td>";
         echo "<td>";
         echo Dropdown::showYesNo(
             'justification_transfer',
@@ -219,7 +242,12 @@ class Entity extends GlpiEntity
         echo "</td></tr>";
 
         echo "<tr class='tab_bg_1' id='keep_category'>";
-        echo "<td class='b'>" . __('Keep category after transfer', 'transferticketentity') . "</td>";
+        echo "<td class='b'>";
+        echo __('Keep category after transfer', 'transferticketentity');
+        echo "<br><span class='text-muted fw-normal' style='font-size:0.8em'>";
+        echo __('If Yes, the original ticket category is preserved after transfer (only if it exists in this entity). If No, the category will be replaced by the default category configured below.', 'transferticketentity');
+        echo "</span>";
+        echo "</td>";
         echo "<td>";
         echo Dropdown::showYesNo(
             'keep_category',
@@ -230,7 +258,12 @@ class Entity extends GlpiEntity
         echo "</td></tr>";
 
         echo "<tr class='tab_bg_1' id='itilcategories_id'>";
-        echo "<td class='b'>" . __('Default category', 'transferticketentity') . "</td>";
+        echo "<td class='b'>";
+        echo __('Default category', 'transferticketentity');
+        echo "<br><span class='text-muted fw-normal' style='font-size:0.8em'>";
+        echo __('Category automatically assigned to the ticket when it is transferred to this entity and the original category is not kept or does not exist here.', 'transferticketentity');
+        echo "</span>";
+        echo "</td>";
         echo "<td>";
         Dropdown::showFromArray(
             'itilcategories_id',

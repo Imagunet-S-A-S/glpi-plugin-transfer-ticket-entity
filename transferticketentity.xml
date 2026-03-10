@@ -16,19 +16,21 @@
          </long>
       </description>
       <homepage>https://www.imagunet.com</homepage>
-      <download>https://www.imagunet.com</download>
-      <issues>mailto:giovanny.rodriguez@imagunet.com</issues>
-      <readme>https://www.imagunet.com</readme>
+      <download>https://github.com/imagunet/transferticketentity/releases</download>
+      <issues>https://github.com/imagunet/transferticketentity/issues</issues>
+      <readme>https://github.com/imagunet/transferticketentity/blob/main/README.md</readme>
       <authors>
-         <author>Giovanny Rodriguez &lt;giovanny.rodriguez@imagunet.com&gt;</author>
-         <author>Santiago Gomez &lt;santiago.gomez@imagunet.com&gt;</author>
-         <author>Juan Gallego &lt;juan.gallego@imagunet.com&gt;</author>
+         <author>IMAGUNET S.A.S &lt;soporte@imagunet.com&gt;</author>
       </authors>
       <versions>
          <version>
+            <num>11.0.1</num>
+            <compatibility>~11.0.0</compatibility>
+            <download>https://github.com/imagunet/transferticketentity/releases</download>
+         </version>
+         <version>
             <num>2.1.0</num>
             <compatibility>~11.0.0</compatibility>
-            <download>https://www.imagunet.com</download>
          </version>
          <version>
             <num>2.0.0</num>

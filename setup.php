@@ -35,11 +35,13 @@ use GlpiPlugin\Transferticketentity\Entity;
 use GlpiPlugin\Transferticketentity\Profile;
 use GlpiPlugin\Transferticketentity\Ticket;
 
-define('TRANSFERTICKETENTITY_VERSION', '2.1.0');
+define('TRANSFERTICKETENTITY_VERSION', '11.0.1');
 
 function plugin_init_transferticketentity()
 {
     global $PLUGIN_HOOKS;
+
+    Plugin::loadLang('transferticketentity');
 
     Plugin::registerClass(Profile::class, ['addtabon' => \Profile::class]);
     Plugin::registerClass(Ticket::class,  ['addtabon' => \Ticket::class]);
@@ -53,9 +55,11 @@ function plugin_version_transferticketentity()
     return [
         'name'           => 'TransferTicketEntity',
         'version'        => TRANSFERTICKETENTITY_VERSION,
-        'author'         => 'Giovanny Rodriguez, Santiago Gomez, Juan Gallego &mdash; IMAGUNET S.A.S',
+        'author'         => 'IMAGUNET S.A.S',
         'license'        => 'AGPLv3+',
         'homepage'       => 'https://www.imagunet.com',
+        'support'        => 'https://www.imagunet.com',
+        'readme'         => 'https://github.com/imagunet/transferticketentity/blob/main/README.md',
         'requirements'   => [
             'glpi' => [
                 'min' => '11.0',

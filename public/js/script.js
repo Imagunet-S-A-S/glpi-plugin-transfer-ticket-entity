@@ -30,16 +30,14 @@ $.ajax({
                 if (entity_choice.value == '') {
                     tt_group_choice.style.display = 'none'
                     tt_btn_open_modal_form.disabled = true
-                    tt_btn_open_modal_form.style.backgroundColor = '#D3D3D3'
-                    tt_btn_open_modal_form.style.color = '#FFFFFF'
-                    tt_btn_open_modal_form.style.cursor = 'not-allowed'
+                    tt_btn_open_modal_form.classList.remove('btn-warning')
+                    tt_btn_open_modal_form.classList.add('btn-secondary')
                 } else {
                     tt_group_choice.style.display = 'flex'
                     document.querySelector('#div_confirmation').style.display = 'block'
                     tt_btn_open_modal_form.disabled = true
-                    tt_btn_open_modal_form.style.backgroundColor = '#D3D3D3'
-                    tt_btn_open_modal_form.style.color = '#FFFFFF'
-                    tt_btn_open_modal_form.style.cursor = 'not-allowed'
+                    tt_btn_open_modal_form.classList.remove('btn-warning')
+                    tt_btn_open_modal_form.classList.add('btn-secondary')
                 }
             })
 
@@ -68,7 +66,7 @@ $.ajax({
                     if (groupRight == 1 && all_group.id != 'tt_none') {
                         all_group.remove();
                     }
-                    if ('tt_plugin_entity_' + entity_choice.value == all_group.className || all_group.value == '') {
+                    if ('tt_plugin_entity_' + entity_choice.value == all_group.className || all_group.className == 'tt_plugin_entity_0' || all_group.value == '') {
                         if (groupRight == 1 && all_group.id != 'tt_none') {
                             document.querySelector('#group_choice').appendChild(all_group)
                         } else if (groupRight == 0) {
@@ -98,29 +96,15 @@ $.ajax({
                 if(document.querySelector('#no_select') !== null) {
                     if (document.querySelector('#no_select').selected == true) {
                         tt_btn_open_modal_form.disabled = true
-                        tt_btn_open_modal_form.style.backgroundColor = '#D3D3D3'
-                        tt_btn_open_modal_form.style.color = '#FFFFFF'
-                        tt_btn_open_modal_form.style.cursor = 'not-allowed'
+                        tt_btn_open_modal_form.classList.remove('btn-warning')
+                        tt_btn_open_modal_form.classList.add('btn-secondary')
                     } else {
                         tt_btn_open_modal_form.disabled = false
-                        tt_btn_open_modal_form.style.backgroundColor = '#80cead'
-                        tt_btn_open_modal_form.style.color = '#1e293b'
-                        tt_btn_open_modal_form.style.cursor = 'pointer'
+                        tt_btn_open_modal_form.classList.remove('btn-secondary')
+                        tt_btn_open_modal_form.classList.add('btn-warning')
                     }
                 }
             })
-
-            let modal_form_adder = document.getElementById('tt_modal_form_adder')
-
-            document.querySelector('#canceltransfert').addEventListener('click', function(event){
-                event.preventDefault()
-                modal_form_adder.close();
-            });
-
-            tt_btn_open_modal_form.addEventListener('click', function(event){
-                event.preventDefault()
-                modal_form_adder.showModal();
-            });
         }
     }, 
     error: function (data) {

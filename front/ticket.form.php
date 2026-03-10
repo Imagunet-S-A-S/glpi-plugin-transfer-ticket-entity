@@ -120,21 +120,29 @@ if (isset($ticket_update['itilcategories_id']) && $ticket_update['itilcategories
 
 $ticket_user = new \Ticket_User();
 foreach ($ticket_user->find(['tickets_id' => $id_ticket, 'type' => \CommonITILActor::ASSIGN]) as $id => $tu) {
-    $ticket_user->delete(['id' => $id]);
+    $DB->delete(\Ticket_User::getTable(), ['id' => $id]);
 }
 
 $group_ticket = new \Group_Ticket();
 foreach ($group_ticket->find(['tickets_id' => $id_ticket, 'type' => \CommonITILActor::ASSIGN]) as $id => $tu) {
-    $group_ticket->delete(['id' => $id]);
+    $DB->delete(\Group_Ticket::getTable(), ['id' => $id]);
 }
 
 $ticket_update['_nolog'] = true;
 $ticket->update($ticket_update);
 
 if ($requiredGroup && !empty($group_choice)) {
-    $group_check = ['tickets_id' => $id_ticket, 'groups_id' => $group_choice, 'type' => \CommonITILActor::ASSIGN];
-    if (!$group_ticket->find($group_check)) {
-        $group_ticket->add($group_check);
+    $existing = $group_ticket->find([
+        'tickets_id' => $id_ticket,
+        'groups_id'  => $group_choice,
+        'type'       => \CommonITILActor::ASSIGN,
+    ]);
+    if (!count($existing)) {
+        $DB->insert(\Group_Ticket::getTable(), [
+            'tickets_id' => $id_ticket,
+            'groups_id'  => $group_choice,
+            'type'       => \CommonITILActor::ASSIGN,
+        ]);
     }
 }
 

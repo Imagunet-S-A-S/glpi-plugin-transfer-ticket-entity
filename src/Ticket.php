@@ -495,8 +495,9 @@ class Ticket extends GlpiTicket
 
     public static function addStyleSheetAndScript()
     {
-        echo Html::css("/plugins/transferticketentity/public/css/style.css");
-        echo Html::script("/plugins/transferticketentity/public/js/script.js");
+        $ver = TRANSFERTICKETENTITY_VERSION;
+        echo Html::css("/plugins/transferticketentity/public/css/style.css?v={$ver}");
+        echo Html::script("/plugins/transferticketentity/public/js/script.js?v={$ver}");
     }
 
     /**
@@ -565,15 +566,12 @@ class Ticket extends GlpiTicket
             return false;
         }
 
-        // GLPI 11: theServer is no longer needed — ticket.form.php redirects
-        // using Ticket::getFormURL() directly. Kept as empty string for compatibility.
         $theServer = '';
 
         $id_ticket = $_REQUEST['id'];
         $id_user   = $_SESSION["glpiID"];
         $checkTicket = self::checkTicket();
 
-        // Check if ticket is closed
         if ($checkTicket == false) {
             self::addStyleSheetAndScript();
             echo "<div class='unauthorised'>";
@@ -582,7 +580,6 @@ class Ticket extends GlpiTicket
             return false;
         }
 
-        // In case JS is not functional
         echo "<div id='tt_gest_error'>";
         echo "<span class='loader'></span>";
         echo "</div>";
@@ -634,7 +631,10 @@ class Ticket extends GlpiTicket
 
         echo "  </select>
                         <div id='div_confirmation'>";
-        echo Html::submit(__('Confirm', 'transferticketentity'), ['disabled' => true, 'id' => 'tt_btn_open_modal_form', 'class' => 'btn btn-primary']);
+        echo "<button type='button' id='tt_btn_open_modal_form' class='btn btn-warning' disabled
+                    data-bs-toggle='modal' data-bs-target='#tt_modal_form_adder'>" .
+             __('Confirm', 'transferticketentity') .
+             "</button>";
         echo "  </div>
                     </div>";
 
@@ -646,20 +646,27 @@ class Ticket extends GlpiTicket
         echo "
                 </div>
 
-                <dialog id='tt_modal_form_adder' class='tt_modal'>
-                    <h2>" . __("Confirm transfer ?", "transferticketentity") . "</h2>
-                    <p>" . __("Once the transfer has been completed, the ticket will remain visible only if you have the required rights.", "transferticketentity") . "</p>
-                    <div class='justification'>
-                        <label for='justification'>" . __("Please explain your transfer", "transferticketentity") . " </label>
-                        <textarea id='justification' name='justification' required></textarea>
+                <div class='modal fade' id='tt_modal_form_adder' tabindex='-1' aria-labelledby='tt_modal_label' aria-hidden='true'>
+                    <div class='modal-dialog modal-dialog-centered'>
+                        <div class='modal-content'>
+                            <div class='modal-header'>
+                                <h5 class='modal-title' id='tt_modal_label'>" . __("Confirm transfer ?", "transferticketentity") . "</h5>
+                            </div>
+                            <div class='modal-body'>
+                                <p class='text-muted mb-3'>" . __("Once the transfer has been completed, the ticket will remain visible only if you have the required rights.", "transferticketentity") . "</p>
+                                <div class='mb-3 text-start'>
+                                    <label for='justification' class='form-label fw-bold'>" . __("Please explain your transfer", "transferticketentity") . " :</label>
+                                    <textarea id='justification' name='justification' class='form-control' rows='3' required></textarea>
+                                </div>
+                                <p class='adv-msg fst-italic text-warning small mb-0'><i class='ti ti-alert-triangle me-1'></i>" . __("Warning, category will be reset if it does not exist in the target entity.", "transferticketentity") . "</p>
+                            </div>
+                            <div class='modal-footer'>";
+        echo "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>" . __('Cancel') . "</button>";
+        echo Html::submit(__('Confirm', 'transferticketentity'), ['name' => 'transfertticket', 'id' => 'transfertticket', 'class' => 'btn btn-warning']);
+        echo "          </div>
+                        </div>
                     </div>
-                    <p class='adv-msg'>" . __("Warning, category will be reset if it does not exist in the target entity.", "transferticketentity") . "</p>
-
-                    <div>";
-        echo Html::submit(__('Cancel'), ['name' => 'canceltransfert', 'id' => 'canceltransfert', 'class' => 'btn btn-danger']);
-        echo Html::submit(__('Confirm', 'transferticketentity'), ['name' => 'transfertticket', 'id' => 'transfertticket', 'class' => 'btn btn-success']);
-        echo "  </div>
-                </dialog>";
+                </div>";
         Html::closeForm();
 
         self::addStyleSheetAndScript();
